@@ -1,5 +1,6 @@
 const express = require('express');
 const hbs = require('hbs');
+const port = process.env.PORT || 3000;
 
 
 var app = express();
@@ -18,7 +19,8 @@ app.use((req, res, next) =>{
 // maintenancemode
 
 app.use((req,res, next)=>{
-    res.render('maintenance.hbs');
+    res.render('maintenance.hbs'); 
+    next();
 });
 
 app.use(express.static(__dirname + '/public'));
@@ -46,7 +48,7 @@ app.get('/about', (req, res) =>{
 
 
 // server port
-app.listen(3000, ()=>{
-    console.log('server is up on port 3000!');
+app.listen(port, ()=>{
+    console.log(`Server is Up on port ${port}`);
 
 });
